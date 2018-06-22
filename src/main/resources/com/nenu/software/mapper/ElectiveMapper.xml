@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nenu.software.mapper.ElectiveMapper">
+
+    <insert id="newElective" parameterType="com.nenu.software.common.entity.Elective">
+        INSERT INTO t_elective(stu_id, course_id, score)
+        VALUES (#{elective.stuId}, #{elective.courseId}, #{elective.score})
+    </insert>
+
+    <delete id="deleteElectiveByConditions">
+        DELETE FROM t_elective
+        <where>
+            <if test="id != null and id > 0">
+                id = #{id}
+            </if>
+            <if test="stuId != null and stuId > 0">
+                AND stu_id = #{stuId}
+            </if>
+            <if test="courseId != null and courseId > 0">
+                AND course_id = #{courseId}
+            </if>
+        </where>
+    </delete>
+
+    <update id="updateElective" parameterType="com.nenu.software.common.entity.Elective">
+        UPDATE t_elective
+        SET stu_id = #{elective.stuId}, course_id = #{elective.courseId}, score = #{elective.score}
+        WHERE id = #{elective.id}
+    </update>
+
+    <select id="selectElectiveById" resultType="com.nenu.software.common.entity.Elective">
+        SELECT id, stu_id AS stuId, course_id AS courseId, score
+        FROM t_elective
+        WHERE id = #{id}
+    </select>
+
+    <select id="listElectiveByConditions" resultType="com.nenu.software.common.entity.Elective">
+        SELECT id, stu_id AS stuId, course_id AS courseId, score
+        FROM t_elective
+        <where>
+            <if test="stuId != null and stuId > 0">
+                stu_id = #{stuId}
+            </if>
+            <if test="courseId != null and courseId > 0">
+                AND course_id = #{courseId}
+            </if>
+        </where>
+    </select>
+
+</mapper>
