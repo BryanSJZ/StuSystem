@@ -1,6 +1,8 @@
 package com.nenu.software.service.impl;
 
+import com.nenu.software.common.entity.Course;
 import com.nenu.software.common.entity.Elective;
+import com.nenu.software.common.entity.Student;
 import com.nenu.software.mapper.ElectiveMapper;
 import com.nenu.software.service.ElectiveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +39,17 @@ public class ElectiveServiceImpl implements ElectiveService {
 
     public List<Elective> listElectiveByConditions(Integer stuId, Integer courseId) throws Exception {
         return electiveMapper.listElectiveByConditions(stuId, courseId);
+    }
+
+    public List<Student> listElectiveStudents(int courseId) throws Exception {
+        return electiveMapper.listElectiveStudents(courseId);
+    }
+
+    public List<Course> listElectedCourses(int stuId) throws Exception {
+        return electiveMapper.listElectedCourses(stuId);
+    }
+
+    public List<Course> listUnelectedCourses(int stuId) throws Exception {
+        return electiveMapper.listUnelectedCourses(stuId);
     }
 }

@@ -1,6 +1,8 @@
 package com.nenu.software.mapper;
 
+import com.nenu.software.common.entity.Course;
 import com.nenu.software.common.entity.Elective;
+import com.nenu.software.common.entity.Student;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -40,4 +42,25 @@ public interface ElectiveMapper {
     public List<Elective> listElectiveByConditions(@Param("stuId") Integer stuId,
                                                    @Param("courseId") Integer courseId) throws Exception;
 
+    /**
+     * 查询选某课程的全体学生
+     * @param courseId 课程ID
+     * @return 选择该课程的学生
+     * @throws Exception 异常
+     */
+    public List<Student> listElectiveStudents(@Param("courseId") int courseId) throws Exception;
+
+    /**
+     * 查询某学生已选课程
+     * @param stuId 学生ID
+     * @return 学生已选课程
+     */
+    public List<Course> listElectedCourses(@Param("stuId") int stuId) throws Exception;
+
+    /**
+     * 查询某学生未选课程
+     * @param stuId 学生ID
+     * @return 学生未选课程
+     */
+    public List<Course> listUnelectedCourses(@Param("stuId") int stuId) throws Exception;
 }

@@ -1,7 +1,9 @@
 package com.nenu.software.service;
 
 
+import com.nenu.software.common.entity.Course;
 import com.nenu.software.common.entity.Elective;
+import com.nenu.software.common.entity.Student;
 
 import java.util.List;
 
@@ -40,4 +42,26 @@ public interface ElectiveService {
     public List<Elective> listElectiveByConditions(Integer stuId,
                                                    Integer courseId) throws Exception;
 
+
+    /**
+     * 查询选某课程的全体学生
+     * @param courseId 课程ID
+     * @return 选择该课程的学生
+     * @throws Exception 异常
+     */
+    public List<Student> listElectiveStudents(int courseId) throws Exception;
+
+    /**
+     * 查询某学生已选课程
+     * @param stuId 学生ID
+     * @return 学生已选课程
+     */
+    public List<Course> listElectedCourses(int stuId) throws Exception;
+
+    /**
+     * 查询某学生未选课程
+     * @param stuId 学生ID
+     * @return 学生未选课程
+     */
+    public List<Course> listUnelectedCourses(int stuId) throws Exception;
 }
